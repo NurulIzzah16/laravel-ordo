@@ -27,6 +27,6 @@ class Controller extends BaseController
         $angka1 = $request->query('angka1');
         $angka2 = $request->query('angka2');
         $hasil = $angka1 + $angka2;
-        return "Hasil penjumlahan $angka1 + $angka2 = $hasil";
+        return view('tambah', ['angka1' => $angka1, 'angka2' => $angka2, 'hasil' => $hasil]);
     }
 }
