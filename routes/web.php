@@ -16,3 +16,4 @@ use App\Http\Controllers\Controller;
 
 Route::get('/hello', [Controller::class, 'index']);
 Route::get('/perkalian/{angka}', [Controller::class, 'perkalian']);
+Route::get('/tambah', [Controller::class, 'tambah']);
