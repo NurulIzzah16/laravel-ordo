@@ -9,4 +9,15 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
+
+    public function index()
+    {
+        return 'hello world';
+    }
+
+    public function perkalian($angka)
+    {
+        $angka = $angka*2;
+        return "angka $angka";
+    }
 }
