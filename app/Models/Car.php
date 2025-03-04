@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Car extends Model
 {
     use HasFactory;
+
     protected $table = 'cars';
     protected $fillable = ['nama', 'jenis', 'harga', 'tanggal_pembuatan'];
     public function manufacture(): HasOne

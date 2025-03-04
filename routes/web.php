@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CarsController;
 
-
 Route::get('/hello', [Controller::class, 'index']);
 Route::get('/perkalian/{angka}', [Controller::class, 'perkalian']);
 Route::get('/tambah', [Controller::class, 'tambah']);
