@@ -33,4 +33,5 @@ class Controller extends BaseController
         $hasil = $angka1 + $angka2;
         return view('tambah', ['angka1' => $angka1, 'angka2' => $angka2, 'hasil' => $hasil]);
     }
+
 }
