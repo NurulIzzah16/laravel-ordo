@@ -24,6 +24,10 @@ class Controller extends BaseController
 
     public function tambah(Request $request)
     {
+        $request->validate([
+            'angka1' => 'required|numeric',
+            'angka2' => 'required|numeric'
+        ]);
         $angka1 = $request->query('angka1');
         $angka2 = $request->query('angka2');
         $hasil = $angka1 + $angka2;
