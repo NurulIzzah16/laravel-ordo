@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\view;
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\Review;
 use App\Models\Manufacture;
 
 
@@ -48,7 +49,8 @@ class CarsController extends Controller
         return view('cars', compact('cars'));
     }
     */
-    public function insertData(){
+
+    /* public function insertData(){
         $cars = Car::create([
             'nama' => 'Toyota Supra',
             'jenis' => 'Sports',
@@ -70,5 +72,26 @@ class CarsController extends Controller
         $cars = Car::with('manufacture')->get();
 
         return view('cars', compact('cars'));
+    } */
+
+    public function insertReview(Request $request, $car_id)
+    {
+        $cars = Car::findOrFail($car_id);
+
+        Review::create([
+            'car_id' => $cars->id,
+            'nilai' => $request->nilai,
+            'nama' => $request->nama,
+            'isi' => $request->isi
+        ]);
+
+        return redirect()->route('showReviews', ['car_id' => $cars->id])->with('success', 'review berhasil ditambahkan!');
     }
+
+    public function showReviews($car_id)
+    {
+        $car = Car::with('reviews')->findOrFail($car_id);
+        return view('review', compact('car'));
+    }
+
 }
