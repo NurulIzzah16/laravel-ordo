@@ -13,3 +13,6 @@ Route::get('/insert-data', [CarsController::class, 'insertData']);
 Route::get('/get-cars', [CarsController::class, 'getCarWithManufacture']);
 Route::get('/cars/{car_id}/reviews', [CarsController::class, 'showReviews'])->name('showReviews');
 Route::post('/cars/{car_id}/reviews', [CarsController::class, 'insertReview'])->name('insertReview');
+Route::get('/cars', [CarsController::class, 'index'])->name('cars.index');
+Route::post('/cars/add-features', [CarsController::class, 'addFeatures'])->name('cars.addFeatures');
+Route::post('/features/store', [CarsController::class, 'store'])->name('features.store');

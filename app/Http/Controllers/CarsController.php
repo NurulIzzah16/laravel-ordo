@@ -7,6 +7,7 @@ use App\Http\Controllers\view;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Review;
+use App\Models\Feature;
 use App\Models\Manufacture;
 
 
@@ -92,6 +93,38 @@ class CarsController extends Controller
     {
         $car = Car::with('reviews')->findOrFail($car_id);
         return view('review', compact('car'));
+    }
+
+    public function index()
+    {
+        $cars = Car::with('features')->get(); // Ambil semua mobil beserta fiturnya
+        $features = Feature::all(); // Ambil semua fitur
+
+        return view('index', compact('cars', 'features'));
+    }
+
+    public function addFeatures(Request $request)
+    {
+        $car = Car::findOrFail($request->car_id);
+
+        if ($request->has('features')) {
+            $car->features()->sync($request->features);
+        }
+
+        return redirect()->route('cars.index')->with('success', 'Fitur berhasil ditambahkan!');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+        ]);
+
+        Feature::create([
+            'nama' => $request->nama
+        ]);
+
+        return redirect()->route('cars.index')->with('success', 'Fitur baru berhasil ditambahkan!');
     }
 
 }
